@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SingleClap</title>
+</head>
+<body>
+{% extends 'base.html' %}
+<!-- enctype is used to tell the server that the file may upload in multiple parts-->
+{% block content %}
+{% load crispy_forms_tags %}
+<h2>Ask a Question from the Admin </h2>
+
+
+<form enctype="multipart/form-data" method="post">
+{% csrf_token %}
+{{form | crispy}}
+<input type="submit"/>
+</form>
+{% endblock %}
+
+</body>
+</html>

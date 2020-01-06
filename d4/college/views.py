@@ -1,9 +1,8 @@
 from django.shortcuts import render
-from .models import Notice
-from .models import Profile
+from .models import Notice, Profile, Question
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import UpdateView, CreateView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
@@ -37,3 +36,9 @@ class NoticeDetailView(DetailView):
 class ProfileUpdateView(UpdateView):
     model = Profile
     fields = ["branch", "sem", "marks_10", "marks_12", "marks_aggr", "myimg", "myresume", "skills", "rn"]
+
+
+@method_decorator(login_required, name='dispatch')
+class QuestionCreate(CreateView):
+    model = Question
+    fields = ["subject", "msg"]
