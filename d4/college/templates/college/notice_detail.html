@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SingleClap</title>
+</head>
+<body>
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>{{notice.subject}}</h2>
+<h4>{{notice.msg}}</h4>
+<h5>{{notice.cr_date}}</h5>
+
+<a href="/college/notice">Back</a>
+{% endblock %}
+</body>
+</html>
