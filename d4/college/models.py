@@ -45,7 +45,7 @@ class Question(models.Model):
     subject = models.CharField(max_length=100)
     msg = models.TextField()
     cr_date = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(to=Branch, on_delete=CASCADE)
+    user = models.ForeignKey(to=User, on_delete=CASCADE, null=True, blank=True)
 
     def __str__(self):
         return self.subject

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SingleClap</title>
+</head>
+<body>
+{% extends 'base.html' %}
+{% block content %}
+<h1> Notices</h1>
+<br>
+{% for n1 in notices %}
+{{n1.subject}}
+{% endfor %}
+
+<h1> Questions  </h1>
+{% for q1 in questions %}
+{{q1.subject}}
+{% endfor %}
+{% endblock %}
+</body>
+</html>

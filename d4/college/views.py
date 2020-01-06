@@ -6,6 +6,9 @@ from django.views.generic.edit import UpdateView, CreateView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from django.http.response import HttpResponseRedirect
+from django.views.generic.base import TemplateView
+
 
 
 def home(req):
@@ -42,3 +45,20 @@ class ProfileUpdateView(UpdateView):
 class QuestionCreate(CreateView):
     model = Question
     fields = ["subject", "msg"]
+
+    def form_valid(self, form):
+        self.object = form.save()
+        self.object.user = self.request.user
+        self.object.save()
+        return HttpResponseRedirect(self.get_success_url())
+
+
+@method_decorator(login_required, name='dispatch')
+class MyList(TemplateView):
+    template_name = "college/mylist.html"
+
+    def get_context_data(self, **kwargs):
+        context = TemplateView.get_context_data(self, **kwargs)
+        context["notices"] = Notice.objects.order_by("-id")[:3]
+        context["questions"] = Question.objects.order_by("-id")[:3]
+        return context;

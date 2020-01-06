@@ -9,7 +9,8 @@
 {% block content %}
 <h3>This is Notice List.</h3>
 <br>
-<form method="post">
+<form method="get">
+{% csrf_token %}
 <input value="{{request.GET.si}}" type="text" name="si" />
 <input type="submit" />
 </form>
